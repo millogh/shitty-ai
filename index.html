@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>mo</title>
+  <!-- cridts t@millogh && t@Ymf02 -->
+  <style media="screen">
+  body {
+    background: linear-gradient(to right, #c8102e, #fdb813); /* change the background to the colors of a Liverpool t-shirt */
+  }
+
+  #badge {
+    width: 200px;
+  }
+
+  #question-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #question-input {
+    flex: 1;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 0 0 2px #ccc;
+    font-size: 1.2em;
+  }
+
+  button[type="submit"] {
+    padding: 0.5em 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 1.2em;
+  }
+
+  #answer {
+    margin-top: 1em;
+    font-size: 1.2em;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div style="display: flex; align-items: center; justify-content: center;">
+    <img id="badge" src="C:\Users\millo2\Desktop\sc\pys_x1\Picsart_22-12-21_18-58-46-566.png" alt="Liverpool badge">
+  </div>
+  <form id="question-form" style="display: flex; align-items: center; justify-content: center;">
+    <input type="text" id="question-input" placeholder="">
+    <button type="submit">تمم</button>
+  </form>
+  <div id="answer" style="text-align: center; margin-top: 1em; font-size: 1.2em;"></div>
+  <footer style="display: flex; align-items: center; justify-content: center; position: fixed; bottom: 0; width: 100%;">
+     <!-- t@millogh && t@Ymf02  -->
+  </footer>
+</body>
+<script type="text/javascript">
+  //  <!-- t@millogh -->
+const form = document.getElementById("question-form");
+const input = document.getElementById("question-input");
+const answerDiv = document.getElementById("answer");
+const answers = {
+  "بتحب الصدر ولا الورك": "الصدر",
+  "اسمك ايه": "حمثلاح",
+  "what is your name?": "My name is حمثلاح.",
+  "how are you?": "I'm doing well, thanks for asking.",
+};
+
+const collator = new Intl.Collator("en");
+const arabicString = "عربي";
+const englishString = "english";
+
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  const question = input.value.toLowerCase();
+  input.value = "";
+
+  if (question.includes("قيم") || question.includes("تقييم")) {
+    const randomNumber = Math.floor(Math.random() * 10) + 1;
+    answerDiv.innerHTML = randomNumber;
+  } else if (question.includes("؟")) {
+    const responses = ["يب", "لا", "ممكن","اتفء","معرفش"];
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    const randomResponse = responses[randomIndex];
+    answerDiv.innerHTML = randomResponse;
+  } else if (question.includes("ولا")) {
+    const options = question.split(" ولا ");
+    const randomOption = options[Math.floor(Math.random() * options.length)];
+    answerDiv.innerHTML = randomOption;
+  } else if (question.trim() === "") {
+    answerDiv.innerHTML = "?";
+  } else if (question.includes("اسمك ايه") || question.includes("اسمك اية")) {
+    answerDiv.innerHTML = "حمثلاح";
+  } else {
+    //answerDiv.innerHTML = answers[question] || "?";
+    const responses = ["يب", "لا", "ممكن","اتفء","معرفش"];
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    const randomResponse = responses[randomIndex];
+    answerDiv.innerHTML = randomResponse;
+  }
+});
+</script>
+</html>
